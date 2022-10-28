@@ -54,8 +54,11 @@ createApp ({
                   } else {
                         this.error = false
                         this.tasks.unshift(this.newTask)
-                        this.newTask = ''
                         
+                        this.newTask = {
+                              text:'',
+                              done: false
+                        }
                   }
             },
             submit(){
@@ -64,11 +67,14 @@ createApp ({
             done(index){
                   this.tasks.splice(index, 1)
             },
-            changeDone(){
-                  if(this.tasks.done === true){
-                        this.tasks.done = false
+            changeDone(index){
+                  if(this.tasks[index].done === true){
+                        console.log('ciao true');
+                        this.tasks[index].done = false
                   } else {
                         console.log('ciao');
+                        this.tasks[index].done = true
+
                   }
             }
 
