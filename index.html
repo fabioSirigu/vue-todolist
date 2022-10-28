@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-      <title>Title</title>
+      <title>VUE-TO DO LIST</title>
       <!-- Required meta tags -->
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -16,21 +16,34 @@
 </head>
 
 <body>
-      <div id="app">
-            <div class="container">
+      <div id="app" class="d-flex align-items-center text-uppercase">
+            <div class="container d-flex justify-content-center">
+                  <div class="addTask mx-4">
+                        <h3>Aggiungi alla lista</h3>
+                        <input type="text" v-model="newTask.text" @keyup.enter="submit" class="form-label p-2" id="exampleFormControlInput1">
+                        
 
-                  <div class="addTask">
-                        <h3>Add a new Task</h3>
-                        <input type="text" v-model="newTask.text" @keyup.enter="submit">
-                        <button @click="addTask">Add Task</button>
-                        <small v-show="error">Devi inserire almeno 5 caratteri</small>
+                        <button @click="addTask" class="btn btn-primary mx-4">Aggiungi</button>
+                        <small v-show="error" class="text-danger error">Devi inserire almeno 5 caratteri</small>
+                        <div class="legend">
+                              <h5 class="text_uppercase">legenda</h5>
+                              <ul class="list-group w-50 text-uppercase">
+                                    <li class="list-group-item bg_todo">gia fatto</li>
+                                    <li class="list-group-item">da fare</li>
+                                    <li class="list-group-item">
+                                          <i class="fa-solid fa-circle-xmark"></i>
+                                          rimuovi
+                                    </li>
+                              </ul>
+                        </div>
                   </div>
-                  <div class="class_list">
-                        <h3>TODO</h3>
-                        <ul>
-                              <li v-for="(task, index) in tasks" :class=" task.done === true ? 'text_through' : '' " @click="changeDone(index)">{{task.text}}
-                                    <i class="fa-solid fa-circle-xmark" @click.stop="done(index)"></i>
+                  <div class="class_list mx-4">
+                        <h3 class="text-uppercase text-center">Lista delle cose da fare</h3>
+                        <ul class="list-group">
+                              <li v-for="(task, index) in tasks" :class=" task.done === true ? 'text_through list-group-item bg_todo' : 'list-group-item' " @click="changeDone(index)">{{task.text}}
+                                    <i class="fa-solid fa-circle-xmark icon_x" @click.stop="done(index)"></i>
                               </li>
+                        </ul>
                   </div>
             </div>
       </div>
